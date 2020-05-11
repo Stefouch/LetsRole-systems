@@ -2,18 +2,18 @@ const ATTRIBUTES = ["strength", "agility", "wits", "empathy"];
 //const CONDITIONS = ["starving", "dehydrated", "exhausted", "freezing"];
 const RESOURCES = ["air", "power", "food", "water"];
 const SKILLS = {
-    heavymachinery: ATTRIBUTES[0],
-    closecombat: ATTRIBUTES[0],
-    stamina: ATTRIBUTES[0],
-    rangedcombat: ATTRIBUTES[1],
-    mobility: ATTRIBUTES[1],
-    piloting: ATTRIBUTES[1],
-    observation: ATTRIBUTES[2],
-    survival: ATTRIBUTES[2],
-    comtech: ATTRIBUTES[2],
-    command: ATTRIBUTES[3],
-    manipulation: ATTRIBUTES[3],
-    medicalaid: ATTRIBUTES[3],
+    heavymachinery: { attribute: ATTRIBUTES[0], name: "Heavy Machinery" },
+    closecombat: { attribute: ATTRIBUTES[0], name: "Close Combat" },
+    stamina: { attribute: ATTRIBUTES[0], name: "Stamina" },
+    rangedcombat: { attribute: ATTRIBUTES[1], name: "Ranged Combat" },
+    mobility: { attribute: ATTRIBUTES[1], name: "Mobility" },
+    piloting: { attribute: ATTRIBUTES[1], name: "Piloting" },
+    observation: { attribute: ATTRIBUTES[2], name: "Observation" },
+    survival: { attribute: ATTRIBUTES[2], name: "Survival" },
+    comtech: { attribute: ATTRIBUTES[2], name: "Comtech" },
+    command: { attribute: ATTRIBUTES[3], name: "Command" },
+    manipulation: { attribute: ATTRIBUTES[3], name: "Manipulation" },
+    medicalaid: { attribute: ATTRIBUTES[3], name: "Medical Aid" },
 };
 
 init = function(sheet) {
@@ -21,18 +21,49 @@ init = function(sheet) {
 };
 
 function initMain(sheet) {
-    each(SKILLS, function(attribute, skill) {
-        sheet.get(skill + "_label").on("click", function(event) {
-            rollSkillDice(sheet, event);
+    initButtons(sheet);
+    initWeapons(sheet);
+    updateHP(sheet);
+    updateEncumbrance(sheet);
+    
+    each(SKILLS, function(data, skill) {
+        sheet.get(skill+"_label").on("click", function(event) {
+            let skillName = event.id().replace("_label", "");
+            rollSkill(sheet, skillName);
         });
     });
     each(RESOURCES, function(res) {
-        sheet.get(res + "_label").on("click", function(event) {
-            rollResourceDice(sheet, event);
+        sheet.get(res+"_label").on("click", function(event) {
+            let resourceName = event.id().replace("_label", "");
+            rollResourceDice(sheet, resourceName);
         });
+    });
+    sheet.get("weapons_repeater").on("update", function() {
+        updateEncumbrance(sheet);
+    });
+    sheet.get("items_repeater").on("update", function() {
+        updateEncumbrance(sheet);
+    });
+    sheet.get("has_talent_pack_mule").on("update", function() {
+        updateEncumbrance(sheet);
+    });
+    sheet.get("has_talent_tough").on("update", function() {
+        updateHP(sheet);
+    });
+    sheet.get("strength").on("update", function() {
+        updateHP(sheet);
+    });
+    sheet.get("food").on("update", function() {
+        updateEncumbrance(sheet);
+    });
+    sheet.get("water").on("update", function() {
+        updateEncumbrance(sheet);
     });
 }
 
+/*
+ * This function is used to modify the Roll result panel.
+ */
 initRoll = function(result, callback) {
     callback("dice_result_view", function(sheet) {
         let stuntCount = 0;
@@ -56,8 +87,8 @@ initRoll = function(result, callback) {
                 sheet.get("total").addClass("text-dark");
             }
             else if (stuntCount) {
-                let str = (stuntCount > 1) ? " Successes" : " Success";
-                sheet.get("total").text(stuntCount+str);
+                let str = (stuntCount > 1) ? "Successes" : "Success";
+                sheet.get("total").text(stuntCount+" "+str);
                 sheet.get("total").addClass("bg-success");
             }
             else {
@@ -99,17 +130,79 @@ initRoll = function(result, callback) {
     });
 };
 
+function initButtons(sheet) {
+    sheet.get("btn_panic").on("click", function(event) {
+        rollPanic(sheet);
+    });
+    sheet.get("btn_baseroll").on("click", function(event) {
+        rollDice(sheet, 0, 0, "Generic");
+    });
+    sheet.get("btn_stressroll").on("click", function(event) {
+        let stress = sheet.get("stress").value();
+        rollDice(sheet, 0, stress, "Stress");
+    });
+}
+
+function initWeapons(sheet) {
+    sheet.get("wpn_unarmed").on("click", function(event) {
+        rollWeapon(sheet, "Unarmed", 0, 1, "closecombat");
+    });
+    sheet.get("weapons_repeater").on("click", "wpn_name", function(component) {
+        let weapons = sheet.get("weapons_repeater").value(); // Get all the children of the repeater (the weapons).
+        let index = component.index(); // Get the ID of the weapon created.
+        let weapon = weapons[index]; // Get a specific child of the repeater (the weapon).
+        let name = weapon.weapon_name;
+        let bonus = weapon.weapon_bonus;
+        let damage = weapon.weapon_damage;
+        let skill = weapon.weapon_skill_used+"combat"; // will either be closecombat or rangedcombat.
+        
+        rollWeapon(sheet, name, bonus, damage, skill);
+    });
+    sheet.get("weapons_repeater").on("click", "wpn_power", function(component) {
+        let weapons = sheet.get("weapons_repeater").value();
+        let index = component.index();
+        let weapon = weapons[index];
+        let isPowered = weapon.weapon_is_powered;
+        if (isPowered) {
+            let power = weapon.weapon_power;
+            if (power) {
+                log("power: "+power);
+            }
+        }
+    });
+}
+
+function rollWeapon(sheet, name, bonus, damage, skill) {
+    if (!name) name = "Unnamed Weapon";
+    let title = name+" (💥"+damage+")";
+    let baseDiceCount = getSkillDiceCount(sheet, skill) + bonus;
+    let stress = sheet.get("stress").value();
+    rollDice(sheet, baseDiceCount, stress, title);
+}
+
 /*
  * Roll the Skill Dice.
  */
-function rollSkillDice(sheet, event) {
-    let skillName = event.id().replace("_label", "");
-    let baseDiceCount = getSkillDiceCount(sheet, skillName);
+function rollSkill(sheet, skill) {
+    let title = SKILLS[skill].name;
+    let baseDiceCount = getSkillDiceCount(sheet, skill);
     let stress = sheet.get("stress").value();
-    
-    let diceExpression = "("+baseDiceCount+"d6[base]=6) + ("+stress+"d6[stress]=6)";
-    let dice = Dice.create(diceExpression);
-    
+    rollDice(sheet, baseDiceCount, stress, title);
+}
+
+function rollDice(sheet, base, stress, title) {
+    if (!title) title = "Unnamed Roll";
+    Prompt(title, "prompt_modifier", function(result) {
+        let modifier = result.modifier ? result.modifier : 0;
+        let diceExpression = getRollExpression(base + modifier, stress);
+        let dice = Dice.create(diceExpression);
+        let actions = {};
+        if (title) actions = getRollActions(sheet, title);
+        Dice.roll(sheet, dice, title, getVisibility(sheet), actions);
+    });
+}
+
+function getRollActions(sheet, title) {
     let actions = {};
     actions["Push"] = function(dice) {
         let previousStress = sheet.get("stress").value();
@@ -118,30 +211,32 @@ function rollSkillDice(sheet, event) {
         let baseDice = dice.children[0].children[0];
         let stressDice = dice.children[1].children[0];
         
-        let newExpression = "("+baseDice.failure+"d6[base]=6) + ("+(stressDice.failure+1)+"d6[stress]=6)";
+        let newExpression = getRollExpression(baseDice.failure, stressDice.failure + 1);
         let pushedDice = Dice.create(newExpression);
         
-        Dice.roll(sheet, pushedDice, skillName+" – Pushed", getVisibility(sheet), actions);
+        Dice.roll(sheet, pushedDice, title+" – Pushed", getVisibility(sheet), actions);
     };
     actions["Panic"] = function(dice) {
         rollPanic(sheet);
     };
     
-    Dice.roll(sheet, dice, skillName, getVisibility(sheet), actions);
+    return actions;
 }
     
 function getSkillDiceCount(sheet, skillName) {
     let skill = sheet.get(skillName);
-    let attribute = sheet.get(SKILLS[skillName]);
-    let diceCount = skill.value() + attribute.value();
-    return diceCount;
+    let attribute = sheet.get(SKILLS[skillName].attribute);
+    return skill.value() + attribute.value();
+}
+
+function getRollExpression(base, stress) {
+    return "("+base+"d6[base]=6) + ("+stress+"d6[stress]=6)";
 }
 
 /*
  * Roll the Resource (Consumable) Dice.
  */
-function rollResourceDice(sheet, event) {
-    let resourceName = event.id().replace("_label", "");
+function rollResourceDice(sheet, resourceName) {
     let resource = sheet.get(resourceName);
     let count = resource.value();
     let rollName = "Consumable: "+resourceName+" × "+count;
@@ -150,31 +245,70 @@ function rollResourceDice(sheet, event) {
         .compare(">", 1)
         .tag("resource");
     
-    let actions = {};
-    actions["Decrease"] = function(dice) {
-        let conso = dice.children[0].failure;
-        let newQty = count - conso;
-        resource.value(newQty);
-        
-        let title = "Consumable: "+resourceName;
-        
-        Dice.roll(sheet, newQty, title, getVisibility(sheet));
+    let actions = {
+        "Decrease": function(dice) {
+            let conso = dice.children[0].failure;
+            let newQty = count - conso;
+            resource.value(newQty);
+            let title = "Consumable: "+resourceName;
+            Dice.roll(sheet, newQty, title, getVisibility(sheet));
+        },
     };
-    
     Dice.roll(sheet, dice, rollName, getVisibility(sheet), actions);
 }
 
+function updateHP(sheet) {
+    let isTough = sheet.get("has_talent_tough").value();
+    let max = sheet.get("strength").value() + (isTough ? 2 : 0);
+    sheet.get("hp_max").text(max);
+}
+
 /*
- * Get the Modifier with a prompt.
+ * Update the Encumbrance current and max value.
  */
-function getModifier() {
-    Prompt("Modifiers ?", "prompt_modifier", function(result) {
-        return result;
+function updateEncumbrance(sheet) {
+    let isMule = sheet.get("has_talent_pack_mule").value();
+    let max = sheet.get("strength").value() * 2 * (isMule ? 2 : 1);
+    let encumbrance = 0.0;
+    
+    let weapons = sheet.get("weapons_repeater").value(); // Get the weapons in the repeater.
+    each(weapons, function(weapon) {
+        let weight = parseInt(weapon.weapon_weight*100)/100;
+        if (weight) {
+            encumbrance += weight;
+        }
     });
+    
+    let items = sheet.get("items_repeater").value(); // Get the items in the repeater.
+    each(items, function(item) {
+        let weight = parseInt(item.item_weight*100)/100;
+        let count = item.item_count;
+        if (weight) {
+            if (count) weight = count * weight;
+            encumbrance += weight;
+        }
+    });
+    
+    let food = sheet.get("food").value() * 0.25;
+    let water = sheet.get("water").value() * 0.25;
+    encumbrance += food + water;
+    
+    sheet.get("encumbrance").text(encumbrance+" / "+max);
+    
+    // Colorization
+    if (encumbrance > max) {
+        sheet.get("encumbrance").removeClass("text-success");
+        sheet.get("encumbrance").addClass("text-danger");
+    }
+    else {
+        sheet.get("encumbrance").removeClass("text-danger");
+        sheet.get("encumbrance").addClass("text-success");
+    }
 }
 
 function rollPanic(sheet) {
-    let stress = sheet.get("stress").value();
+    let isSteel = sheet.get("has_talent_nerves_of_steel").value();
+    let stress = sheet.get("stress").value() + (isSteel ? -2 : 0);
     let panicExpression = "1d6+"+stress+"[panic]";
     Dice.roll(sheet, panicExpression, "Panic Roll", getVisibility(sheet));
 }
@@ -206,9 +340,12 @@ function getVisibility(sheet) {
 
 
 
-    
-    
-    
-    
+
+
+
+
+
+
+
 
 
