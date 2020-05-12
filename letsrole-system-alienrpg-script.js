@@ -1,23 +1,40 @@
+/* ===============================================================================
+ * ALIEN RPG
+ * Official game by Free League Publishing (Fria Ligan): https://www.frialigan.se
+ * Official website: https://www.alien-rpg.com
+ * ===============================================================================
+ * System Version: MU/TH/UR 800 (v0.8)
+ * ===============================================================================
+ * Contributing:
+ * Since Let's-Role doesn't support push request, please use the following
+ * Github repository: https://github.com/Stefouch/LetsRole-system-ALIEN-RPG
+ * ===============================================================================
+ * Creator: Stefouch
+ * Patreon: https://www.patreon.com/Stefouch
+ * ===============================================================================
+ */
+
 const ATTRIBUTES = ["strength", "agility", "wits", "empathy"];
 //const CONDITIONS = ["starving", "dehydrated", "exhausted", "freezing"];
 const RESOURCES = ["air", "power", "food", "water"];
 const SKILLS = {
-    heavymachinery: { attribute: ATTRIBUTES[0], name: "Heavy Machinery" },
-    closecombat: { attribute: ATTRIBUTES[0], name: "Close Combat" },
-    stamina: { attribute: ATTRIBUTES[0], name: "Stamina" },
-    rangedcombat: { attribute: ATTRIBUTES[1], name: "Ranged Combat" },
-    mobility: { attribute: ATTRIBUTES[1], name: "Mobility" },
-    piloting: { attribute: ATTRIBUTES[1], name: "Piloting" },
-    observation: { attribute: ATTRIBUTES[2], name: "Observation" },
-    survival: { attribute: ATTRIBUTES[2], name: "Survival" },
-    comtech: { attribute: ATTRIBUTES[2], name: "Comtech" },
-    command: { attribute: ATTRIBUTES[3], name: "Command" },
-    manipulation: { attribute: ATTRIBUTES[3], name: "Manipulation" },
-    medicalaid: { attribute: ATTRIBUTES[3], name: "Medical Aid" },
+    heavymachinery: { attribute: ATTRIBUTES[0], name: _("Heavy Machinery") },
+    closecombat: { attribute: ATTRIBUTES[0], name: _("Close Combat") },
+    stamina: { attribute: ATTRIBUTES[0], name: _("Stamina") },
+    rangedcombat: { attribute: ATTRIBUTES[1], name: _("Ranged Combat") },
+    mobility: { attribute: ATTRIBUTES[1], name: _("Mobility") },
+    piloting: { attribute: ATTRIBUTES[1], name: _("Piloting") },
+    observation: { attribute: ATTRIBUTES[2], name: _("Observation") },
+    survival: { attribute: ATTRIBUTES[2], name: _("Survival") },
+    comtech: { attribute: ATTRIBUTES[2], name: _("Comtech") },
+    command: { attribute: ATTRIBUTES[3], name: _("Command") },
+    manipulation: { attribute: ATTRIBUTES[3], name: _("Manipulation") },
+    medicalaid: { attribute: ATTRIBUTES[3], name: _("Medical Aid") },
 };
 
 init = function(sheet) {
     if (sheet.id() === "main") initMain(sheet);
+    if (sheet.id() === "prompt_modifier") initPromptModifier(sheet);
 };
 
 function initMain(sheet) {
@@ -61,9 +78,21 @@ function initMain(sheet) {
     });
 }
 
-/*
- * This function is used to modify the Roll result panel.
- */
+// The modifier Prompt has a pair of Plus-Minus buttons.
+function initPromptModifier(sheet) {
+    sheet.get("btn_mod_plus").on("click", function() {
+        let modInput = sheet.get("modifier");
+        let modifier = modInput.value();
+        modInput.value(modifier + 1);
+    });
+    sheet.get("btn_mod_minus").on("click", function() {
+        let modInput = sheet.get("modifier");
+        let modifier = modInput.value();
+        modInput.value(modifier - 1);
+    });
+}
+
+// This function is used to modify the Roll result panel.
 initRoll = function(result, callback) {
     callback("dice_result_view", function(sheet) {
         let stuntCount = 0;
@@ -131,20 +160,45 @@ initRoll = function(result, callback) {
 };
 
 function initButtons(sheet) {
-    sheet.get("btn_panic").on("click", function(event) {
+    // Generic Buttons Under the Avatar
+    sheet.get("btn_panic").on("click", function() {
         rollPanic(sheet);
     });
-    sheet.get("btn_baseroll").on("click", function(event) {
+    sheet.get("btn_baseroll").on("click", function() {
         rollDice(sheet, 0, 0, "Generic");
     });
-    sheet.get("btn_stressroll").on("click", function(event) {
+    sheet.get("btn_stressroll").on("click", function() {
         let stress = sheet.get("stress").value();
         rollDice(sheet, 0, stress, "Stress");
+    });
+    // Health Plus-Minus Buttons
+    sheet.get("btn_hp_plus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        //let hpMax = getMaxHP(sheet);
+        //if (hp < hpMax)
+        hpInput.value(hp + 1);
+    });
+    sheet.get("btn_hp_minus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        if (hp > 0) hpInput.value(hp - 1);
+    });
+    // Stress Plus-Minus Buttons
+    sheet.get("btn_stress_plus").on("click", function() {
+        let stressInput = sheet.get("stress");
+        let stress = stressInput.value();
+        if (stress < 10) stressInput.value(stress + 1);
+    });
+    sheet.get("btn_stress_minus").on("click", function() {
+        let stressInput = sheet.get("stress");
+        let stress = stressInput.value();
+        if (stress > 0) stressInput.value(stress - 1);
     });
 }
 
 function initWeapons(sheet) {
-    sheet.get("wpn_unarmed").on("click", function(event) {
+    sheet.get("wpn_unarmed").on("click", function() {
         rollWeapon(sheet, "Unarmed", 0, 1, "closecombat");
     });
     sheet.get("weapons_repeater").on("click", "wpn_name", function(component) {
@@ -155,9 +209,9 @@ function initWeapons(sheet) {
         let bonus = weapon.weapon_bonus;
         let damage = weapon.weapon_damage;
         let skill = weapon.weapon_skill_used+"combat"; // will either be closecombat or rangedcombat.
-        
         rollWeapon(sheet, name, bonus, damage, skill);
     });
+    /* Unused Yet
     sheet.get("weapons_repeater").on("click", "wpn_power", function(component) {
         let weapons = sheet.get("weapons_repeater").value();
         let index = component.index();
@@ -169,9 +223,17 @@ function initWeapons(sheet) {
                 log("power: "+power);
             }
         }
-    });
+    });//*/
 }
 
+/**
+ * Rolls the dice for an attack.
+ * @param {Sheet} sheet - The main sheet
+ * @param {string} name - The name of the weapon
+ * @param {number} bonus - The weapon's bonus
+ * @param {number} damage - The weapon's damage
+ * @param {string} skill - The skill used by the weapon ("closecombat" or "rangedcombat")
+ */
 function rollWeapon(sheet, name, bonus, damage, skill) {
     if (!name) name = "Unnamed Weapon";
     let title = name+" (💥"+damage+")";
@@ -180,8 +242,10 @@ function rollWeapon(sheet, name, bonus, damage, skill) {
     rollDice(sheet, baseDiceCount, stress, title);
 }
 
-/*
- * Roll the Skill Dice.
+/**
+ * Rolls the Skill Dice.
+ * @param {Sheet} sheet - The main sheet
+ * @param {string} skill - The name of the skill used
  */
 function rollSkill(sheet, skill) {
     let title = SKILLS[skill].name;
@@ -190,6 +254,15 @@ function rollSkill(sheet, skill) {
     rollDice(sheet, baseDiceCount, stress, title);
 }
 
+/**
+ * Rolls ALIEN-RPG dice.
+ * @param {Sheet} sheet - The main sheet
+ * @param {number} base - The number of Base dice
+ * @param {number} stress - The number of Stress dice
+ * @param {string} title - The title of the roll (facultative)
+ * @prompt
+ * @rolls
+ */
 function rollDice(sheet, base, stress, title) {
     if (!title) title = "Unnamed Roll";
     Prompt(title, "prompt_modifier", function(result) {
@@ -202,6 +275,15 @@ function rollDice(sheet, base, stress, title) {
     });
 }
 
+/**
+ * Gets the available roll actions.
+ * The roll actions are:
+ *  - "Push"
+ *  - "Panic"
+ * @param {Sheet} sheet - The main sheet
+ * @param {string} title - The title of the roll
+ * @returns {Object}
+ */
 function getRollActions(sheet, title) {
     let actions = {};
     actions["Push"] = function(dice) {
@@ -222,33 +304,52 @@ function getRollActions(sheet, title) {
     
     return actions;
 }
-    
+
+/**
+ * Gets the number of Base dice for a given skill.
+ * @param {Sheet} sheet - The main sheet
+ * @param {string} skillName - The name of the skill
+ *     The function gets the value of the skill and its connected attribute
+ * @returns {number} The number of Base dice to roll
+ */
 function getSkillDiceCount(sheet, skillName) {
     let skill = sheet.get(skillName);
     let attribute = sheet.get(SKILLS[skillName].attribute);
     return skill.value() + attribute.value();
 }
 
+/**
+ * Gets the ALIEN-RPG Dice/Roll expression.
+ * @param {number} base - The number of Base dice
+ * @param {number} stress - The number of Stress dice
+ * @returns {string}
+ */
 function getRollExpression(base, stress) {
     return "("+base+"d6[base]=6) + ("+stress+"d6[stress]=6)";
 }
 
-/*
- * Roll the Resource (Consumable) Dice.
+/**
+ * Rolls the Resource (Consumable) Dice.
+ * @param {Sheet} sheet - The main sheet
+ * @param {string} resourceName - The name of the resource (see const RESOURCES above)
+ * @rolls
  */
 function rollResourceDice(sheet, resourceName) {
     let resource = sheet.get(resourceName);
-    let count = resource.value();
-    let rollName = "Consumable: "+resourceName+" × "+count;
+    let qty = resource.value();
+    let count = Math.min(qty, 6); // Maximum 6 resource dice are rolled.
+    let rollName = "Consumable: "+resourceName+" × "+qty;
     
     let dice = Dice.create(count+"d6")
         .compare(">", 1)
         .tag("resource");
     
+    // Actually, the player has to hit "Decrease" to reduce the consumable quantity.
+    // Let's-Role can't do it automatically.
     let actions = {
         "Decrease": function(dice) {
             let conso = dice.children[0].failure;
-            let newQty = count - conso;
+            let newQty = qty - conso;
             resource.value(newQty);
             let title = "Consumable: "+resourceName;
             Dice.roll(sheet, newQty, title, getVisibility(sheet));
@@ -257,19 +358,39 @@ function rollResourceDice(sheet, resourceName) {
     Dice.roll(sheet, dice, rollName, getVisibility(sheet), actions);
 }
 
+/**
+ * Updates the Health Points.
+ * @param {Sheet} sheet - The main sheet
+ */
 function updateHP(sheet) {
-    let isTough = sheet.get("has_talent_tough").value();
-    let max = sheet.get("strength").value() + (isTough ? 2 : 0);
-    sheet.get("hp_max").text(max);
+    let hpMax = getMaxHP(sheet);
+    //let hpInput = sheet.get("hp");
+    //let hp = hpInput.value();
+    sheet.get("hp_max").text(hpMax);
+    //if (hp > hpMax) hpInput.value(hpMax);
 }
 
-/*
- * Update the Encumbrance current and max value.
+/**
+ * Gets the HP maximum.
+ * @param {Sheet} sheet - The main sheet
+ * @returns {number}
+ */
+function getMaxHP(sheet) {
+    let isTough = sheet.get("has_talent_tough").value();
+    let max = sheet.get("strength").value() + (isTough ? 2 : 0);
+    return max;
+}
+
+/**
+ * Updates the sheet's Encumbrance current and max values.
+ * @param {Sheet} sheet - The main sheet
  */
 function updateEncumbrance(sheet) {
     let isMule = sheet.get("has_talent_pack_mule").value();
     let max = sheet.get("strength").value() * 2 * (isMule ? 2 : 1);
     let encumbrance = 0.0;
+    // Let's-Role NumberInputs don't support float value.
+    // We have to use "parseInt( <text> * 100) / 100" from a label to get a two-decimal number.
     
     let weapons = sheet.get("weapons_repeater").value(); // Get the weapons in the repeater.
     each(weapons, function(weapon) {
@@ -289,13 +410,15 @@ function updateEncumbrance(sheet) {
         }
     });
     
+    // Food & Water have also a weight. 4 units equal to 1 encumbrance.
     let food = sheet.get("food").value() * 0.25;
     let water = sheet.get("water").value() * 0.25;
     encumbrance += food + water;
     
+    // Updates the Encumbrance text.
     sheet.get("encumbrance").text(encumbrance+" / "+max);
     
-    // Colorization
+    // Some extra colorization effects.
     if (encumbrance > max) {
         sheet.get("encumbrance").removeClass("text-success");
         sheet.get("encumbrance").addClass("text-danger");
@@ -306,6 +429,11 @@ function updateEncumbrance(sheet) {
     }
 }
 
+/**
+ * Performs a Panic roll.
+ * @param {Sheet} sheet - The main sheet
+ * @rolls
+ */
 function rollPanic(sheet) {
     let isSteel = sheet.get("has_talent_nerves_of_steel").value();
     let stress = sheet.get("stress").value() + (isSteel ? -2 : 0);
@@ -313,13 +441,16 @@ function rollPanic(sheet) {
     Dice.roll(sheet, panicExpression, "Panic Roll", getVisibility(sheet));
 }
 
-/*
- * Count how many values[x] equals to nb.
- * For Year Zero Engine, only 1s and 6s matter.
+/**
+ * Counts how many values[x] equals to nb.
+ * @param {Array<number>} values - An array of numbers with all the dice values
+ * @param {number} nb - The value that is counted
+ * @returns {number}
  */
 function countYZfig(values, nb) {
     let count = 0;
     each(values, function(val) {
+        // For the Year Zero Engine, only the 1s and 6s matter.
         if (nb <= 1) {
             if (val <= nb) count++;
         }
@@ -330,16 +461,18 @@ function countYZfig(values, nb) {
     return count;
 }
 
-/*
- * Get the roll visibility option.
+/**
+ * Gets the option for the roll visibility.
+ * Options are: "all", "gm", "gmonly"
+ * @param {Sheet} sheet - The main sheet
+ * @returns {string}
  */
 function getVisibility(sheet) {
-    return sheet.get("roll_visibility").value();
+    //let opts = ["all", "gm", "gmonly"];
+    let visibility = sheet.get("roll_visibility").value();
+    if (visibility) return visibility;
+    else return "all";
 }
-
-
-
-
 
 
 
