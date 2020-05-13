@@ -3,7 +3,7 @@
  * Official game by Free League Publishing (Fria Ligan): https://www.frialigan.se
  * Official website: https://www.alien-rpg.com
  * ===============================================================================
- * System Version: MU/TH/UR 800 (v0.8)
+ * System Version: MU/TH/UR 810 (v0.81)
  * ===============================================================================
  * Contributing:
  * Since Let's-Role doesn't support push request, please use the following
@@ -394,7 +394,7 @@ function updateEncumbrance(sheet) {
     
     let weapons = sheet.get("weapons_repeater").value(); // Get the weapons in the repeater.
     each(weapons, function(weapon) {
-        let weight = parseInt(weapon.weapon_weight*100)/100;
+        let weight = convertTextToFloat(weapon.weapon_weight, 3);
         if (weight) {
             encumbrance += weight;
         }
@@ -402,7 +402,7 @@ function updateEncumbrance(sheet) {
     
     let items = sheet.get("items_repeater").value(); // Get the items in the repeater.
     each(items, function(item) {
-        let weight = parseInt(item.item_weight*100)/100;
+        let weight = convertTextToFloat(item.item_weight, 2);
         let count = item.item_count;
         if (weight) {
             if (count) weight = count * weight;
@@ -439,6 +439,21 @@ function rollPanic(sheet) {
     let stress = sheet.get("stress").value() + (isSteel ? -2 : 0);
     let panicExpression = "1d6+"+stress+"[panic]";
     Dice.roll(sheet, panicExpression, "Panic Roll", getVisibility(sheet));
+}
+
+/**
+ * Converts a stringy-number into a decimal.
+ * @param {string} text - Text to decypher
+ * @param {number} decimal - Number of digits after the decimal point
+ * @returns {float}
+ */
+function convertTextToFloat(text, decimal) {
+    let str = (text+"").replace(",", "."); // Ensures it's a string and converts French decimals into English system.
+    // Removed the Math.pow function for faster calculation.
+    // We don't use more than 2 digits so default is 100.
+    //let m = Math.pow(10, decimal);
+    let m = 100;
+    return parseInt(str * m) / m;
 }
 
 /**
