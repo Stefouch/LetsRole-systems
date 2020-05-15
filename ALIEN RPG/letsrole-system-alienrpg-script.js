@@ -3,7 +3,7 @@
  * Official game by Free League Publishing (Fria Ligan): https://www.frialigan.se
  * Official website: https://www.alien-rpg.com
  * ===============================================================================
- * System Version: MU/TH/UR 810 (v0.81)
+ * System Version: MU/TH/UR 820 (v0.82)
  * ===============================================================================
  * Contributing:
  * Since Let's-Role doesn't support push request, please use the following
