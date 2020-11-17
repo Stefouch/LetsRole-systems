@@ -3,7 +3,8 @@
  * Official game by Free League Publishing (Fria Ligan): https://www.frialigan.se
  * Official website: https://www.alien-rpg.com
  * ===============================================================================
- * System Version: MU/TH/UR 820 (v0.82)
+ * System Version: MU/TH/UR 900 (v0.9)
+ * Last Update:    17.11.2020
  * ===============================================================================
  * Contributing:
  * Since Let's-Role doesn't support push request, please use the following
@@ -34,9 +35,13 @@ const SKILLS = {
 
 init = function(sheet) {
     if (sheet.id() === "main") initMain(sheet);
+    if (sheet.id() === "monster") initMonster(sheet);
     if (sheet.id() === "prompt_modifier") initPromptModifier(sheet);
 };
 
+/**
+ * MAIN CHARACTER INITIALIZATION
+ */
 function initMain(sheet) {
     initButtons(sheet);
     initWeapons(sheet);
@@ -78,7 +83,157 @@ function initMain(sheet) {
     });
 }
 
-// The modifier Prompt has a pair of Plus-Minus buttons.
+function initButtons(sheet) {
+    // Generic Buttons Under the Avatar
+    sheet.get("btn_panic").on("click", function() {
+        rollPanic(sheet);
+    });
+    sheet.get("btn_baseroll").on("click", function() {
+        rollDice(sheet, 0, 0, "Generic");
+    });
+    sheet.get("btn_stressroll").on("click", function() {
+        let stress = sheet.get("stress").value();
+        rollDice(sheet, 0, stress, "Stress");
+    });
+    sheet.get("btn_armor").on("click", function() {
+        let armor = sheet.get("armor").value();
+        sheet.prompt("Armor", "prompt_modifier", function(result) {
+            let modifier = result.modifier ? result.modifier : 0;
+            let diceQty = armor + modifier;
+            let diceExp = diceQty + "d6[armor]>=6";
+            Dice.roll(sheet, diceExp, "Armor", getVisibility(sheet), null);
+        });
+    });
+    // Health Plus-Minus Buttons
+    sheet.get("btn_hp_plus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        //let hpMax = getMaxHP(sheet);
+        //if (hp < hpMax)
+        hpInput.value(hp + 1);
+    });
+    sheet.get("btn_hp_minus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        if (hp > 0) hpInput.value(hp - 1);
+    });
+    // Stress Plus-Minus Buttons
+    sheet.get("btn_stress_plus").on("click", function() {
+        let stressInput = sheet.get("stress");
+        let stress = stressInput.value();
+        if (stress < 10) stressInput.value(stress + 1);
+    });
+    sheet.get("btn_stress_minus").on("click", function() {
+        let stressInput = sheet.get("stress");
+        let stress = stressInput.value();
+        if (stress > 0) stressInput.value(stress - 1);
+    });
+    // Armor Plus-Minus Buttons
+    sheet.get("btn_armor_plus").on("click", function() {
+        let armorInput = sheet.get("armor");
+        let armor = armorInput.value();
+        armorInput.value(armor + 1);
+    });
+    sheet.get("btn_armor_minus").on("click", function() {
+        let armorInput = sheet.get("armor");
+        let armor = armorInput.value();
+        if (armor > 0) armorInput.value(armor - 1);
+    });
+}
+
+function initWeapons(sheet) {
+    sheet.get("wpn_unarmed").on("click", function() {
+        rollWeapon(sheet, "Unarmed", 0, 1, "closecombat");
+    });
+    sheet.get("weapons_repeater").on("click", "wpn_name", function(component) {
+        let weapons = sheet.get("weapons_repeater").value(); // Get all the children of the repeater (the weapons).
+        let index = component.index(); // Get the ID of the weapon created.
+        let weapon = weapons[index]; // Get a specific child of the repeater (the weapon).
+        let name = weapon.weapon_name;
+        let bonus = weapon.weapon_bonus;
+        let damage = weapon.weapon_damage;
+        let skill = weapon.weapon_skill_used+"combat"; // will either be closecombat or rangedcombat.
+        rollWeapon(sheet, name, bonus, damage, skill);
+    });
+    /* Unused Yet
+    sheet.get("weapons_repeater").on("click", "wpn_power", function(component) {
+        let weapons = sheet.get("weapons_repeater").value();
+        let index = component.index();
+        let weapon = weapons[index];
+        let isPowered = weapon.weapon_is_powered;
+        if (isPowered) {
+            let power = weapon.weapon_power;
+            if (power) {
+                log("power: "+power);
+            }
+        }
+    });//*/
+}
+
+/**
+ * MONSTER (CRAFT) INITIALIZATION
+ */
+function initMonster(sheet) {
+    sheet.setData({ "stress": 0 });
+    initMonsterAttacks(sheet);
+    initMonsterButtons(sheet);
+}
+
+function initMonsterAttacks(sheet) {
+    sheet.get("monster_attacks_repeater").on("click", "monster_atk_ref", function(component) {
+        let attacks = sheet.get("monster_attacks_repeater").value(); // Get all the children of the repeater (the attacks).
+        let index = component.index(); // Get the ID of the weapon created.
+        let attack = attacks[index]; // Get a specific child of the repeater (the weapon).
+        let diceQty = attack.monster_attack_dice
+        if (attack.monster_attack_dice > 0) {
+            let name = attack.monster_attack_name;
+            let title = name + " ("+diceQty+"D)";
+            sheet.prompt(title, "prompt_modifier", function(result) {
+                let modifier = result.modifier ? result.modifier : 0;
+                diceQty += modifier;
+                let diceExp = getRollExpression(diceQty, 0);
+                let damage = attack.monster_attack_dmg;
+                if (damage > 0) title = name + " (💥"+damage+")";
+                Dice.roll(sheet, diceExp, title, getVisibility(sheet), null);
+            });
+        }
+    });
+}
+
+function initMonsterButtons(sheet) {
+    sheet.get("monster_btn_baseroll").on("click", function() {
+        rollDice(sheet, 0, 0, "Generic");
+    });
+    // Health Plus-Minus Buttons
+    sheet.get("btn_hp_plus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        //let hpMax = getMaxHP(sheet);
+        //if (hp < hpMax)
+        hpInput.value(hp + 1);
+    });
+    sheet.get("btn_hp_minus").on("click", function() {
+        let hpInput = sheet.get("hp");
+        let hp = hpInput.value();
+        if (hp > 0) hpInput.value(hp - 1);
+    });
+    // Armor Plus-Minus Buttons
+    sheet.get("btn_armor_plus").on("click", function() {
+        let armorInput = sheet.get("armor");
+        let armor = armorInput.value();
+        armorInput.value(armor + 1);
+    });
+    sheet.get("btn_armor_minus").on("click", function() {
+        let armorInput = sheet.get("armor");
+        let armor = armorInput.value();
+        if (armor > 0) armorInput.value(armor - 1);
+    });
+}
+
+/**
+ * PROMPT INITIALIZATION
+ * The modifier Prompt has a pair of Plus-Minus buttons.
+ */
 function initPromptModifier(sheet) {
     sheet.get("btn_mod_plus").on("click", function() {
         let modInput = sheet.get("modifier");
@@ -159,71 +314,24 @@ initRoll = function(result, callback) {
     });
 };
 
-function initButtons(sheet) {
-    // Generic Buttons Under the Avatar
-    sheet.get("btn_panic").on("click", function() {
-        rollPanic(sheet);
-    });
-    sheet.get("btn_baseroll").on("click", function() {
-        rollDice(sheet, 0, 0, "Generic");
-    });
-    sheet.get("btn_stressroll").on("click", function() {
-        let stress = sheet.get("stress").value();
-        rollDice(sheet, 0, stress, "Stress");
-    });
-    // Health Plus-Minus Buttons
-    sheet.get("btn_hp_plus").on("click", function() {
-        let hpInput = sheet.get("hp");
-        let hp = hpInput.value();
-        //let hpMax = getMaxHP(sheet);
-        //if (hp < hpMax)
-        hpInput.value(hp + 1);
-    });
-    sheet.get("btn_hp_minus").on("click", function() {
-        let hpInput = sheet.get("hp");
-        let hp = hpInput.value();
-        if (hp > 0) hpInput.value(hp - 1);
-    });
-    // Stress Plus-Minus Buttons
-    sheet.get("btn_stress_plus").on("click", function() {
-        let stressInput = sheet.get("stress");
-        let stress = stressInput.value();
-        if (stress < 10) stressInput.value(stress + 1);
-    });
-    sheet.get("btn_stress_minus").on("click", function() {
-        let stressInput = sheet.get("stress");
-        let stress = stressInput.value();
-        if (stress > 0) stressInput.value(stress - 1);
-    });
-}
-
-function initWeapons(sheet) {
-    sheet.get("wpn_unarmed").on("click", function() {
-        rollWeapon(sheet, "Unarmed", 0, 1, "closecombat");
-    });
-    sheet.get("weapons_repeater").on("click", "wpn_name", function(component) {
-        let weapons = sheet.get("weapons_repeater").value(); // Get all the children of the repeater (the weapons).
-        let index = component.index(); // Get the ID of the weapon created.
-        let weapon = weapons[index]; // Get a specific child of the repeater (the weapon).
-        let name = weapon.weapon_name;
-        let bonus = weapon.weapon_bonus;
-        let damage = weapon.weapon_damage;
-        let skill = weapon.weapon_skill_used+"combat"; // will either be closecombat or rangedcombat.
-        rollWeapon(sheet, name, bonus, damage, skill);
-    });
-    /* Unused Yet
-    sheet.get("weapons_repeater").on("click", "wpn_power", function(component) {
-        let weapons = sheet.get("weapons_repeater").value();
-        let index = component.index();
-        let weapon = weapons[index];
-        let isPowered = weapon.weapon_is_powered;
-        if (isPowered) {
-            let power = weapon.weapon_power;
-            if (power) {
-                log("power: "+power);
-            }
-        }
-    });//*/
+/**
+ * Connect attribute bars.
+ */
+getBarAttributes = function(sheet) {
+    if (sheet.id() === "main") {
+        return {
+            "HP": ["hp", "hp_max"],
+            "Stress": ["stress", 10],
+            "Armor": ["armor", "armor"]
+        };
+    }
+    if (sheet.id() === "monster") {
+        return {
+            "HP": ["hp", "hp_max"],
+            "Armor": ["armor", "armor"]
+        };
+    }
+    return {};
 }
 
 /**
@@ -265,7 +373,7 @@ function rollSkill(sheet, skill) {
  */
 function rollDice(sheet, base, stress, title) {
     if (!title) title = "Unnamed Roll";
-    Prompt(title, "prompt_modifier", function(result) {
+    sheet.prompt(title, "prompt_modifier", function(result) {
         let modifier = result.modifier ? result.modifier : 0;
         let diceExpression = getRollExpression(base + modifier, stress);
         let dice = Dice.create(diceExpression);

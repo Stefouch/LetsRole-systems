@@ -1,4 +1,21 @@
 Source,Translation
+Dmg,
+Damage of the attack (if any),Dégâts de l'attaque (le cas échéant)
+Abilities,Capacités
+# Reference of the attack,# Référence de l'attaque
+Number of dice rolled by the attack (if any),Nombre de dés lancés par l'attaque (le cas échéant)
+Signature Attacks,Attaques dédiées
+Armor,Armure
+Skills,Compétences
+Effect,Effet
+Ref,Réf
+Attack,Attaque
+Max HP,PV max
+Current HP,PV actuels
+Speed,Rapidité
+Monster,Monstre
+Character,Personnage
+No Role,Aucun rôle
 Talent description...,Description du talent ...
 Talent name...,Nom du talent ...
 XP:,XP :
