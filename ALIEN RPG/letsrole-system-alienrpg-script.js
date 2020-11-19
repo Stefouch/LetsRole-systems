@@ -3,12 +3,12 @@
  * Official game by Free League Publishing (Fria Ligan): https://www.frialigan.se
  * Official website: https://www.alien-rpg.com
  * ===============================================================================
- * System Version: MU/TH/UR 900 (v0.9)
- * Last Update:    17.11.2020
+ * System Version: MU/TH/UR 910 (v0.91)
+ * Last Update:    19.11.2020
  * ===============================================================================
  * Contributing:
  * Since Let's-Role doesn't support push request, please use the following
- * Github repository: https://github.com/Stefouch/LetsRole-system-ALIEN-RPG
+ * Github repository: https://github.com/Stefouch/LetsRole-systems
  * ===============================================================================
  * Creator: Stefouch
  * Patreon: https://www.patreon.com/Stefouch
@@ -174,7 +174,7 @@ function initWeapons(sheet) {
  * MONSTER (CRAFT) INITIALIZATION
  */
 function initMonster(sheet) {
-    sheet.setData({ "stress": 0 });
+    //sheet.setData({ "stress": 0 });
     initMonsterAttacks(sheet);
     initMonsterButtons(sheet);
 }
@@ -594,14 +594,5 @@ function getVisibility(sheet) {
     //let opts = ["all", "gm", "gmonly"];
     let visibility = sheet.get("roll_visibility").value();
     if (visibility) return visibility;
-    else return "all";
+    return "all";
 }
-
-
-
-
-
-
-
-
-
