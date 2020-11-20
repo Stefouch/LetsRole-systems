@@ -408,6 +408,7 @@
 					}
 				  ],
 				  "className": "Container",
+				  "collapsed": true,
 				  "layout": "horizontal"
 				},
 				{
@@ -431,10 +432,12 @@
 					}
 				  ],
 				  "className": "Container",
+				  "collapsed": true,
 				  "layout": "horizontal"
 				}
 			  ],
-			  "className": "Column"
+			  "className": "Column",
+			  "collapsed": true
 			},
 			{
 			  "size": 3,
@@ -566,12 +569,10 @@
 				  "layout": "horizontal"
 				}
 			  ],
-			  "className": "Column",
-			  "collapsed": true
+			  "className": "Column"
 			}
 		  ],
-		  "className": "Row",
-		  "collapsed": true
+		  "className": "Row"
 		},
 		{
 		  "id": "kgtbhrfz",
@@ -1249,7 +1250,8 @@
 			  "collapsed": true
 			}
 		  ],
-		  "className": "Row"
+		  "className": "Row",
+		  "collapsed": true
 		},
 		{
 		  "id": "evqdhzom",
@@ -1881,7 +1883,8 @@
 			  "className": "Column"
 			}
 		  ],
-		  "className": "Row"
+		  "className": "Row",
+		  "collapsed": true
 		},
 		{
 		  "id": "wrqqrkxq",
@@ -2341,7 +2344,8 @@
 			  "collapsed": true
 			}
 		  ],
-		  "className": "Row"
+		  "className": "Row",
+		  "collapsed": true
 		},
 		{
 		  "id": "lfwyzcyl",
@@ -2361,7 +2365,7 @@
 				  "className": "Label"
 				},
 				{
-				  "placeholder": "Notes...",
+				  "placeholder": "...",
 				  "id": "weapon_notes",
 				  "name": "TextInput",
 				  "classes": "pl-2",
@@ -2371,7 +2375,8 @@
 			  "className": "Column"
 			}
 		  ],
-		  "className": "Row"
+		  "className": "Row",
+		  "collapsed": true
 		}
 	  ],
 	  "className": "View"
@@ -2415,7 +2420,7 @@
 			  "classes": "p-0",
 			  "children": [
 				{
-				  "text": "\"+\" + #weapon_bonus",
+				  "text": "if(#weapon_bonus < 0, #weapon_bonus, \"+\"+#weapon_bonus)",
 				  "align": "Center",
 				  "computed": true,
 				  "id": "wpn_bonus",
@@ -2549,7 +2554,8 @@
 			  "className": "Column"
 			}
 		  ],
-		  "className": "Row"
+		  "className": "Row",
+		  "collapsed": true
 		}
 	  ],
 	  "className": "View"
@@ -2875,7 +2881,7 @@
 	  "height": 400,
 	  "id": "talent_slot_edit",
 	  "name": "Talent Slot (Editable)",
-	  "classes": "border border-warning rounded-lg p-1",
+	  "classes": "border border-warning rounded-lg p-1 highlight-1",
 	  "children": [
 		{
 		  "placeholder": "Talent name...",
@@ -2925,12 +2931,10 @@
 	  "craft": true,
 	  "avatarId": "avatarmonster",
 	  "tokenizable": true,
-	  "droppable": false,
 	  "width": 650,
 	  "height": 400,
 	  "id": "monster",
 	  "name": "Monster",
-	  "classes": "",
 	  "children": [
 		{
 		  "id": "xdrmvvik",
@@ -2941,56 +2945,31 @@
 			  "size": 2,
 			  "id": "kovhebds",
 			  "name": "Column Avatar",
-			  "classes": "",
 			  "children": [
 				{
 				  "id": "avatarmonster",
 				  "name": "Avatar",
-				  "classes": "",
-				  "children": [],
-				  "className": "Avatar",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Avatar"
 				},
 				{
 				  "id": "monstercolor",
 				  "name": "Color",
-				  "classes": "",
-				  "children": [],
-				  "className": "Color",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Color"
 				},
 				{
 				  "text": "Roll Visibility:",
-				  "align": null,
-				  "clickable": false,
-				  "quickBar": false,
-				  "isTemplate": false,
-				  "computed": false,
-				  "roll": null,
 				  "id": "nvntaacz",
 				  "name": "Label",
 				  "classes": "text-tiny mt-2 text-info",
-				  "children": [],
-				  "className": "Label",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Label"
 				},
 				{
 				  "id": "roll_visibility",
 				  "name": "Choice",
 				  "classes": "highlight-1",
-				  "children": [],
 				  "className": "Choice",
-				  "collapsed": false,
-				  "references": [],
 				  "label": "name",
-				  "tableId": "roll-visibility",
-				  "optional": false,
-				  "expanded": false,
-				  "multiple": false,
-				  "expandedClass": ""
+				  "tableId": "roll-visibility"
 				},
 				{
 				  "id": "phmufmxd",
@@ -2998,79 +2977,50 @@
 				  "classes": "mt-3",
 				  "children": [
 					{
-					  "size": null,
 					  "id": "kukrktcp",
 					  "name": "Column",
-					  "classes": "",
 					  "children": [
 						{
 						  "text": "1d6",
-						  "align": null,
 						  "clickable": true,
 						  "quickBar": true,
-						  "isTemplate": false,
-						  "computed": false,
 						  "roll": "1d6",
 						  "id": "majqyyed",
 						  "name": "1d6",
 						  "classes": "btn btn-outline-info text-small px-1 mr-1 mb-1",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						},
 						{
 						  "text": "d66",
-						  "align": null,
 						  "clickable": true,
 						  "quickBar": true,
-						  "isTemplate": false,
-						  "computed": false,
 						  "roll": "(1d6*10)+1d6",
 						  "id": "ylimocmf",
 						  "name": "d66",
 						  "classes": "btn btn-outline-info text-small px-1 mr-1 mb-1",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						},
 						{
 						  "text": "Base Dice",
-						  "align": null,
 						  "clickable": true,
 						  "quickBar": true,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "monster_btn_baseroll",
 						  "name": "Base Roll",
 						  "classes": "btn btn-outline-info text-small w-75px px-1 mr-1 mb-1",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
-				  "className": "Row",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Row"
 				}
 			  ],
-			  "className": "Column",
-			  "collapsed": false,
-			  "references": []
+			  "className": "Column"
 			},
 			{
-			  "size": null,
 			  "id": "nbqdmgce",
 			  "name": "Column Stats",
-			  "classes": "",
 			  "children": [
 				{
 				  "id": "rhrsclxi",
@@ -3085,24 +3035,14 @@
 					  "children": [
 						{
 						  "text": "Health",
-						  "align": null,
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "vuzcokbf",
 						  "name": "Label",
 						  "classes": "text-info",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
 					  "size": 4,
@@ -3113,102 +3053,63 @@
 						{
 						  "id": "taranjgz",
 						  "name": "Container",
-						  "classes": "",
 						  "children": [
 							{
-							  "min": null,
-							  "max": null,
 							  "defaultValue": "1",
 							  "align": "Center",
-							  "computed": false,
-							  "computedValue": null,
 							  "tooltip": true,
 							  "tooltipLabel": "Current HP",
 							  "id": "hp",
 							  "name": "NumberInput",
 							  "classes": "w-50px text-danger",
-							  "children": [],
-							  "className": "NumberInput",
-							  "collapsed": false,
-							  "references": []
+							  "className": "NumberInput"
 							},
 							{
 							  "text": "/",
-							  "align": null,
-							  "clickable": false,
-							  "quickBar": false,
-							  "isTemplate": false,
-							  "computed": false,
-							  "roll": null,
 							  "id": "gvfgevzz",
 							  "name": "Label",
 							  "classes": "mx-2",
-							  "children": [],
-							  "className": "Label",
-							  "collapsed": false,
-							  "references": []
+							  "className": "Label"
 							},
 							{
-							  "min": null,
-							  "max": null,
 							  "defaultValue": "1",
 							  "align": "Center",
-							  "computed": false,
-							  "computedValue": null,
 							  "tooltip": true,
 							  "tooltipLabel": "Max HP",
 							  "id": "hp_max",
 							  "name": "NumberInput",
 							  "classes": "w-50px text-danger",
-							  "children": [],
-							  "className": "NumberInput",
-							  "collapsed": false,
-							  "references": []
+							  "className": "NumberInput"
 							},
 							{
 							  "id": "btn_hp_plus",
 							  "name": "Icon",
 							  "classes": "text-danger clickable ml-2 mr-1",
-							  "children": [],
 							  "className": "Icon",
-							  "collapsed": false,
-							  "references": [],
-							  "iconName": "plus-circle",
-							  "roll": "",
-							  "rollTitle": ""
+							  "iconName": "plus-circle"
 							},
 							{
 							  "id": "btn_hp_minus",
 							  "name": "Icon",
 							  "classes": "text-danger",
-							  "children": [],
 							  "className": "Icon",
-							  "collapsed": false,
-							  "references": [],
-							  "iconName": "minus-circle",
-							  "roll": "",
-							  "rollTitle": ""
+							  "iconName": "minus-circle"
 							}
 						  ],
 						  "className": "Container",
-						  "collapsed": false,
-						  "references": [],
 						  "layout": "horizontal"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
 					  "size": 1,
 					  "id": "yjnemyfa",
 					  "name": "Sep",
 					  "classes": "p-0",
-					  "children": [],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
 					  "size": 2,
@@ -3219,23 +3120,14 @@
 						{
 						  "text": "Speed",
 						  "align": "Right",
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "kbvjerys",
 						  "name": "Label",
 						  "classes": "text-info mr-3",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
 					  "size": 2,
@@ -3244,29 +3136,21 @@
 					  "classes": "p-0",
 					  "children": [
 						{
-						  "min": null,
 						  "max": 10,
 						  "defaultValue": "1",
 						  "align": "Center",
-						  "computed": false,
-						  "computedValue": null,
 						  "id": "speed",
 						  "name": "NumberInput",
 						  "classes": "w-50px",
-						  "children": [],
-						  "className": "NumberInput",
-						  "collapsed": false,
-						  "references": []
+						  "className": "NumberInput"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "limanpvk",
@@ -3281,27 +3165,18 @@
 					  "children": [
 						{
 						  "text": "Armor",
-						  "align": null,
 						  "clickable": true,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
 						  "roll": "(@armor)d6[armor]>=6",
 						  "id": "armor_label",
 						  "name": "Label",
 						  "classes": "text-info",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
-					  "size": null,
 					  "id": "uluxcrsu",
 					  "name": "Column",
 					  "classes": "p-0",
@@ -3309,73 +3184,44 @@
 						{
 						  "id": "juwziqsc",
 						  "name": "Container",
-						  "classes": "",
 						  "children": [
 							{
-							  "min": null,
-							  "max": null,
-							  "defaultValue": "",
 							  "align": "Center",
-							  "computed": false,
-							  "computedValue": null,
 							  "id": "armor",
 							  "name": "NumberInput",
 							  "classes": "w-50px",
-							  "children": [],
-							  "className": "NumberInput",
-							  "collapsed": false,
-							  "references": []
+							  "className": "NumberInput"
 							},
 							{
 							  "id": "btn_armor_plus",
 							  "name": "Icon",
 							  "classes": "clickable ml-2 mr-1",
-							  "children": [],
 							  "className": "Icon",
-							  "collapsed": false,
-							  "references": [],
-							  "iconName": "plus-circle",
-							  "roll": "",
-							  "rollTitle": ""
+							  "iconName": "plus-circle"
 							},
 							{
 							  "id": "btn_armor_minus",
 							  "name": "Icon",
 							  "classes": "clickable mr-3",
-							  "children": [],
 							  "className": "Icon",
-							  "collapsed": false,
-							  "references": [],
-							  "iconName": "minus-circle",
-							  "roll": "",
-							  "rollTitle": ""
+							  "iconName": "minus-circle"
 							},
 							{
 							  "placeholder": "...",
-							  "computed": false,
 							  "id": "mcnlyobj",
 							  "name": "TextInput",
 							  "classes": "ml-2 pl-2",
-							  "children": [],
-							  "className": "TextInput",
-							  "collapsed": false,
-							  "references": []
+							  "className": "TextInput"
 							}
 						  ],
 						  "className": "Container",
-						  "collapsed": false,
-						  "references": [],
 						  "layout": "horizontal"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
-				  "className": "Row",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Row"
 				},
 				{
 				  "id": "docgsweg",
@@ -3390,51 +3236,32 @@
 					  "children": [
 						{
 						  "text": "Skills",
-						  "align": null,
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "kytpwtuu",
 						  "name": "Label",
 						  "classes": "text-info",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					},
 					{
-					  "size": null,
 					  "id": "rjufyvxa",
 					  "name": "Column",
 					  "classes": "p-0",
 					  "children": [
 						{
 						  "placeholder": "...",
-						  "computed": false,
 						  "id": "yvomvthi",
 						  "name": "TextInput",
 						  "classes": "pl-2",
-						  "children": [],
-						  "className": "TextInput",
-						  "collapsed": false,
-						  "references": []
+						  "className": "TextInput"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "dujydukp",
@@ -3449,51 +3276,33 @@
 					  "children": [
 						{
 						  "text": "Abilities",
-						  "align": null,
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "mscgjigk",
 						  "name": "Label",
 						  "classes": "text-info",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
 					  "className": "Column",
-					  "collapsed": true,
-					  "references": []
+					  "collapsed": true
 					},
 					{
-					  "size": null,
 					  "id": "mfgphdmg",
 					  "name": "Column",
 					  "classes": "p-0",
 					  "children": [
 						{
 						  "placeholder": "...",
-						  "computed": false,
 						  "id": "bqspofme",
 						  "name": "Textarea",
 						  "classes": "px-2",
-						  "children": [],
-						  "className": "Textarea",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Textarea"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "wpqyuwjz",
@@ -3501,31 +3310,22 @@
 				  "classes": "p-1",
 				  "children": [
 					{
-					  "size": null,
 					  "id": "qjmrkbry",
 					  "name": "Column",
 					  "classes": "p-0",
 					  "children": [
 						{
 						  "placeholder": "Notes...",
-						  "computed": false,
 						  "id": "huxgjmsj",
 						  "name": "Textarea",
 						  "classes": "px-2 h-100px",
-						  "children": [],
-						  "className": "Textarea",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Textarea"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
-				  "className": "Row",
-				  "collapsed": false,
-				  "references": []
+				  "className": "Row"
 				},
 				{
 				  "id": "cakohjie",
@@ -3533,36 +3333,22 @@
 				  "classes": "mt-2",
 				  "children": [
 					{
-					  "size": null,
 					  "id": "rnjtzjzw",
 					  "name": "Column",
-					  "classes": "",
 					  "children": [
 						{
 						  "text": "Signature Attacks",
-						  "align": null,
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "lvpmcjeq",
 						  "name": "Label",
 						  "classes": "text-medium text-info",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "njmrufpo",
@@ -3578,55 +3364,30 @@
 						{
 						  "text": "Ref",
 						  "align": "Center",
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "jbbssxjx",
 						  "name": "Label",
-						  "classes": "",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					},
 					{
-					  "size": null,
 					  "id": "jnjxjnla",
 					  "name": "Column",
 					  "classes": "p-0",
 					  "children": [
 						{
 						  "text": "Attack",
-						  "align": null,
-						  "clickable": false,
-						  "quickBar": false,
-						  "isTemplate": false,
-						  "computed": false,
-						  "roll": null,
 						  "id": "soldfwqx",
 						  "name": "Label",
-						  "classes": "",
-						  "children": [],
-						  "className": "Label",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Label"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "yowvpdcn",
@@ -3634,66 +3395,46 @@
 				  "classes": "mb-2 ml-0 mr-3",
 				  "children": [
 					{
-					  "size": null,
 					  "id": "pwqgqxlm",
 					  "name": "Column",
 					  "classes": "border border-info",
-					  "children": [],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				},
 				{
 				  "id": "qshntukc",
 				  "name": "Row Repeater",
-				  "classes": "",
 				  "children": [
 					{
-					  "size": null,
 					  "id": "nbsbskfm",
 					  "name": "Column",
-					  "classes": "",
 					  "children": [
 						{
 						  "viewId": "monster_attack_slot_edit",
 						  "readViewId": "monster_attack_slot",
-						  "children": [],
 						  "id": "monster_attacks_repeater",
 						  "name": "Repeater",
-						  "classes": "",
-						  "className": "Repeater",
-						  "collapsed": false,
-						  "references": []
+						  "className": "Repeater"
 						}
 					  ],
-					  "className": "Column",
-					  "collapsed": false,
-					  "references": []
+					  "className": "Column"
 					}
 				  ],
 				  "className": "Row",
-				  "collapsed": true,
-				  "references": []
+				  "collapsed": true
 				}
 			  ],
 			  "className": "Column",
-			  "collapsed": true,
-			  "references": []
+			  "collapsed": true
 			}
 		  ],
-		  "className": "Row",
-		  "collapsed": false,
-		  "references": []
+		  "className": "Row"
 		}
 	  ],
-	  "className": "View",
-	  "collapsed": false,
-	  "references": []
+	  "className": "View"
 	},
 	{
 	  "type": "SubComponent",
@@ -3754,7 +3495,7 @@
 	  "width": 650,
 	  "height": 400,
 	  "id": "monster_attack_slot_edit",
-	  "name": "Monster Attack (Edit)",
+	  "name": "Monster Attack (Editable)",
 	  "classes": "border border-warning rounded-lg highlight-1 pt-1 pb-2 pl-2 pr-2",
 	  "children": [
 		{
@@ -3935,7 +3676,7 @@
 	  "height": 400,
 	  "id": "gm_memo_slot_edit",
 	  "name": "GM Memo Slot (Editable)",
-	  "classes": "border border-warning rounded-lg p-1",
+	  "classes": "border border-warning rounded-lg p-1 highlight-1",
 	  "children": [
 		{
 		  "placeholder": "Title",
@@ -3998,6 +3739,1954 @@
 		  ],
 		  "className": "Container",
 		  "layout": "horizontal"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "Main",
+	  "craft": true,
+	  "avatarId": "spaceshipavatar",
+	  "tokenizable": true,
+	  "width": "750",
+	  "height": "500",
+	  "id": "spaceship",
+	  "name": "Spaceship",
+	  "children": [
+		{
+		  "id": "ehdmjfvr",
+		  "name": "Tab",
+		  "className": "Tab",
+		  "tableId": "spaceship-tabs",
+		  "titleAttribute": "name",
+		  "viewAttribute": "id",
+		  "vertical": true,
+		  "verticalWidth": 1,
+		  "verticalText": true,
+		  "verticalAlign": "left"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_stats_view",
+	  "name": "Spaceship Stats",
+	  "children": [
+		{
+		  "id": "vfnqlpuv",
+		  "name": "Row",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "id": "zgfyellp",
+			  "name": "Column Stats",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "id": "pqiizgxf",
+				  "name": "Container Text",
+				  "classes": "mb-3",
+				  "children": [
+					{
+					  "text": "NAME",
+					  "align": "Center",
+					  "id": "evabpbmt",
+					  "name": "Label",
+					  "classes": "text-tiny text-info",
+					  "className": "Label"
+					},
+					{
+					  "id": "yvlgytwv",
+					  "name": "TextInput",
+					  "classes": "text-center text-title",
+					  "className": "TextInput"
+					},
+					{
+					  "text": "MANUFACTURER",
+					  "align": "Center",
+					  "id": "fzykifrd",
+					  "name": "Label",
+					  "classes": "text-tiny text-info mt-2",
+					  "className": "Label"
+					},
+					{
+					  "id": "jliqmajh",
+					  "name": "TextInput",
+					  "classes": "text-center",
+					  "className": "TextInput"
+					},
+					{
+					  "text": "AI",
+					  "align": "Center",
+					  "id": "zwszuzun",
+					  "name": "Label",
+					  "classes": "text-tiny text-info mt-2",
+					  "className": "Label"
+					},
+					{
+					  "id": "gbvxolkg",
+					  "name": "TextInput",
+					  "classes": "text-center",
+					  "className": "TextInput"
+					}
+				  ],
+				  "className": "Container",
+				  "collapsed": true,
+				  "layout": "vertical"
+				},
+				{
+				  "id": "ojgufvdb",
+				  "name": "Row Crew-Passengers",
+				  "classes": "p-1",
+				  "children": [
+					{
+					  "size": 2,
+					  "id": "pihwjjby",
+					  "name": "Sep",
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 4,
+					  "id": "lmmosyln",
+					  "name": "Col Crew",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "omepiiqm",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg mr-1",
+						  "children": [
+							{
+							  "align": "Center",
+							  "id": "crew",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							},
+							{
+							  "text": "Crew",
+							  "align": "Center",
+							  "id": "crew_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 4,
+					  "id": "ifixvwkp",
+					  "name": "Col Passengers",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "nuhdhjed",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg ml-1",
+						  "children": [
+							{
+							  "text": "Passengers",
+							  "align": "Center",
+							  "id": "passengers_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							},
+							{
+							  "align": "Center",
+							  "id": "passengers",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "hjjmtwsp",
+				  "name": "Row Length-FTLrating",
+				  "classes": "p-1",
+				  "children": [
+					{
+					  "size": 1,
+					  "id": "pnujbjul",
+					  "name": "Sep",
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 5,
+					  "id": "exxybtzg",
+					  "name": "Col Length",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "orbescxj",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg mr-1",
+						  "children": [
+							{
+							  "align": "Center",
+							  "id": "length",
+							  "name": "NumberInput",
+							  "classes": "w-50px",
+							  "className": "NumberInput"
+							},
+							{
+							  "text": "Length",
+							  "align": "Center",
+							  "id": "length_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 5,
+					  "id": "mfavmrql",
+					  "name": "Col FTL Rating",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "yjzkzhnh",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg ml-1",
+						  "children": [
+							{
+							  "text": "FTL Rating",
+							  "align": "Center",
+							  "id": "ftlrating_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							},
+							{
+							  "align": "Center",
+							  "id": "ftlrating",
+							  "name": "NumberInput",
+							  "classes": "w-50px",
+							  "className": "NumberInput"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "kbbtmkts",
+				  "name": "Row Signature-Thrusters",
+				  "classes": "p-1",
+				  "children": [
+					{
+					  "size": 2,
+					  "id": "udmpzpvr",
+					  "name": "Sep",
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 4,
+					  "id": "bonhivhr",
+					  "name": "Col Signature",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "imqfcnrp",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg mr-1",
+						  "children": [
+							{
+							  "align": "Center",
+							  "id": "signature",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							},
+							{
+							  "text": "Signature",
+							  "align": "Center",
+							  "id": "signature_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							}
+						  ],
+						  "className": "Container",
+						  "collapsed": true,
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 4,
+					  "id": "ogrvftah",
+					  "name": "Col Thrusters",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "uxwlodcj",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg ml-1",
+						  "children": [
+							{
+							  "text": "Thrusters",
+							  "align": "Center",
+							  "id": "thursters_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							},
+							{
+							  "align": "Center",
+							  "id": "thrusters",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "nglqvdan",
+				  "name": "Row Hull-Armor",
+				  "classes": "p-1",
+				  "children": [
+					{
+					  "size": 3,
+					  "id": "jyooakiq",
+					  "name": "Sep",
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 3,
+					  "id": "jlzacfpz",
+					  "name": "Col Hull",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "yinlryqj",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg mr-1",
+						  "children": [
+							{
+							  "align": "Center",
+							  "id": "hull",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							},
+							{
+							  "text": "Hull",
+							  "align": "Center",
+							  "id": "hull_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					},
+					{
+					  "size": 3,
+					  "id": "gknzwwmh",
+					  "name": "Col Armor",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "id": "mwhayjby",
+						  "name": "Container",
+						  "classes": "highlight-2 border border-secondary rounded-lg ml-1",
+						  "children": [
+							{
+							  "text": "Armor",
+							  "align": "Center",
+							  "id": "armor_label",
+							  "name": "Label",
+							  "classes": "w-100 text-bold",
+							  "className": "Label"
+							},
+							{
+							  "align": "Center",
+							  "id": "armor",
+							  "name": "NumberInput",
+							  "classes": "w-25px",
+							  "className": "NumberInput"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "ztpgriqw",
+				  "name": "Row Damage",
+				  "classes": "p-1",
+				  "children": [
+					{
+					  "id": "dtgspjlj",
+					  "name": "Col",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "text": "DAMAGE",
+						  "align": "Center",
+						  "id": "viospqsg",
+						  "name": "Label",
+						  "classes": "text-tiny text-info",
+						  "className": "Label"
+						},
+						{
+						  "id": "ctgqerea",
+						  "name": "Container Checkboxes",
+						  "classes": "justify-content-center",
+						  "children": [
+							{
+							  "id": "nbimyjoy",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "joxxfprj",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "vjaquipu",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "xvkzyqxo",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "bleyensp",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "rtvlvuss",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "ijkmmmni",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "hswhrhxk",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "nlrqxcwu",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							},
+							{
+							  "id": "kbmzfyyp",
+							  "name": "Checkbox",
+							  "className": "Checkbox"
+							}
+						  ],
+						  "className": "Container",
+						  "layout": "horizontal"
+						}
+					  ],
+					  "className": "Column",
+					  "collapsed": true
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 4,
+			  "id": "vaqydgmu",
+			  "name": "Col Avatar",
+			  "children": [
+				{
+				  "id": "spaceshipavatar",
+				  "name": "Avatar",
+				  "className": "Avatar"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			}
+		  ],
+		  "className": "Row"
+		},
+		{
+		  "id": "mbgfnbnz",
+		  "name": "Container",
+		  "classes": "justify-content-end",
+		  "children": [
+			{
+			  "text": "Lease Cost:",
+			  "id": "gofuajjy",
+			  "name": "Label",
+			  "classes": "text-tiny",
+			  "className": "Label"
+			},
+			{
+			  "align": "Right",
+			  "id": "usfnaybv",
+			  "name": "NumberInput",
+			  "classes": "w-100px ml-3 px-2",
+			  "className": "NumberInput"
+			}
+		  ],
+		  "className": "Container",
+		  "layout": "horizontal"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_modules_view",
+	  "name": "Spaceship Modules",
+	  "children": [
+		{
+		  "id": "ojdyylal",
+		  "name": "Row Table Header",
+		  "classes": "mb-1 ml-0 mr-3",
+		  "children": [
+			{
+			  "size": 8,
+			  "id": "lzjzjisd",
+			  "name": "Col Module",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Internal Module",
+				  "id": "fqzvtijc",
+				  "name": "Label",
+				  "classes": "ml-2 text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "suzsnrxx",
+			  "name": "Col Size",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Size",
+				  "align": "Center",
+				  "id": "gkgezgjs",
+				  "name": "Label",
+				  "classes": "text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 3,
+			  "id": "ujghdjwm",
+			  "name": "Col Price",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Price",
+				  "align": "Right",
+				  "id": "lwaayeet",
+				  "name": "Label",
+				  "classes": "text-info mr-3",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "lsyjofxp",
+		  "name": "Row Sep",
+		  "classes": "mb-2 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "yzqzmlgr",
+			  "name": "Column",
+			  "classes": "border border-info",
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "oxqluubx",
+		  "name": "Row Repeater",
+		  "children": [
+			{
+			  "id": "gxhokzja",
+			  "name": "Column",
+			  "children": [
+				{
+				  "viewId": "spaceship_module_slot_edit",
+				  "readViewId": "spaceship_module_slot",
+				  "id": "uilyzhzs",
+				  "name": "Repeater",
+				  "className": "Repeater"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_module_slot_edit",
+	  "name": "Spaceship Module (Editable)",
+	  "classes": "border border-warning rounded-lg highlight-1 pt-1 pb-2 pl-2 pr-2",
+	  "children": [
+		{
+		  "id": "rxvuwaow",
+		  "name": "Row",
+		  "classes": "m-0",
+		  "children": [
+			{
+			  "size": 8,
+			  "id": "dvoqloin",
+			  "name": "Column",
+			  "classes": "pl-0 pr-2",
+			  "children": [
+				{
+				  "text": "Module Name",
+				  "id": "vdnwntlj",
+				  "name": "Label",
+				  "classes": "ml-1 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "module_name",
+				  "name": "TextInput",
+				  "classes": "px-2",
+				  "className": "TextInput"
+				},
+				{
+				  "text": "Module Capacity/Type",
+				  "id": "fnpxwxgw",
+				  "name": "Label",
+				  "classes": "mt-2 ml-1 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "module_cap",
+				  "name": "TextInput",
+				  "classes": "px-2",
+				  "className": "TextInput"
+				},
+				{
+				  "text": "Module Effect",
+				  "id": "ypohmfmb",
+				  "name": "Label",
+				  "classes": "ml-1 mt-2 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "module_effect",
+				  "name": "Textarea",
+				  "classes": "px-2 h-100px",
+				  "className": "Textarea"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "leurryjw",
+			  "name": "Col Size",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Size",
+				  "id": "qtqsxmzf",
+				  "name": "Label",
+				  "classes": "ml-1 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "max": 5,
+				  "align": "Center",
+				  "id": "module_size",
+				  "name": "NumberInput",
+				  "classes": "h-50px text-medium",
+				  "className": "NumberInput"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 3,
+			  "id": "vdbrbwlw",
+			  "name": "Col Price",
+			  "classes": "pl-2 pr-0",
+			  "children": [
+				{
+				  "text": "Price",
+				  "id": "uzrnoxsh",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary ml-1",
+				  "className": "Label"
+				},
+				{
+				  "align": "Right",
+				  "id": "module_price",
+				  "name": "NumberInput",
+				  "classes": "px-2 w-100px",
+				  "className": "NumberInput"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_module_slot",
+	  "name": "Spaceship Module (Display)",
+	  "classes": "highlight-1 py-2",
+	  "children": [
+		{
+		  "id": "kchadnui",
+		  "name": "Row",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "size": 8,
+			  "id": "oiapwscg",
+			  "name": "Col Module",
+			  "classes": "pl-2 pr-0",
+			  "children": [
+				{
+				  "text": "#module_name",
+				  "computed": true,
+				  "id": "tuepixdg",
+				  "name": "Label",
+				  "classes": "text-medium text-bold",
+				  "className": "Label"
+				},
+				{
+				  "text": "if(#module_cap, #module_cap, \"\")",
+				  "computed": true,
+				  "id": "upowpfyn",
+				  "name": "Label",
+				  "classes": "ml-1",
+				  "className": "Label"
+				},
+				{
+				  "text": "if(#module_effect, #module_effect, \"\")",
+				  "computed": true,
+				  "id": "gwqncxny",
+				  "name": "Label",
+				  "classes": "ml-1 text-secondary",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "tivpwjnl",
+			  "name": "Col Size",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "#module_size",
+				  "align": "Center",
+				  "computed": true,
+				  "id": "oquqyovz",
+				  "name": "Label",
+				  "classes": "text-medium",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 3,
+			  "id": "lohoqldf",
+			  "name": "Col Price",
+			  "classes": "pl-0 pr-2",
+			  "children": [
+				{
+				  "text": "if(#module_price, \"$ \"+#module_price, \"\")",
+				  "align": "Right",
+				  "computed": true,
+				  "id": "svyzdvte",
+				  "name": "Label",
+				  "classes": "text-secondary",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_armaments_view",
+	  "name": "Spaceship Armaments",
+	  "children": [
+		{
+		  "id": "bvlyjssh",
+		  "name": "Row Table Header",
+		  "classes": "mb-1 ml-0 mr-3",
+		  "children": [
+			{
+			  "size": 4,
+			  "id": "afujsooy",
+			  "name": "Col Name",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Name",
+				  "id": "gabsvjox",
+				  "name": "Label",
+				  "classes": "ml-2 text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "fsxwtxnb",
+			  "name": "Col Bonus",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Bonus",
+				  "align": "Center",
+				  "id": "seudbsdk",
+				  "name": "Label",
+				  "classes": "text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "aunchrcr",
+			  "name": "Col Damage",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Damage",
+				  "align": "Center",
+				  "id": "ppooityk",
+				  "name": "Label",
+				  "classes": "text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 2,
+			  "id": "oqkyodde",
+			  "name": "Col Range",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Range",
+				  "align": "Center",
+				  "id": "qwurtjmo",
+				  "name": "Label",
+				  "classes": "text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "qusbanud",
+			  "name": "Col Hardpoint",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Hardpoint",
+				  "align": "Center",
+				  "id": "rhvwimko",
+				  "name": "Label",
+				  "classes": "text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "id": "patfjitp",
+			  "name": "Col Type",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Type",
+				  "align": "Right",
+				  "id": "hblnukup",
+				  "name": "Label",
+				  "classes": "text-info mr-3",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		},
+		{
+		  "id": "zjrnnycy",
+		  "name": "Row Sep",
+		  "classes": "mb-2 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "oieeedgl",
+			  "name": "Column",
+			  "classes": "border border-info",
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "fwapjdsr",
+		  "name": "Row Repeater",
+		  "children": [
+			{
+			  "id": "yvohmybt",
+			  "name": "Column",
+			  "children": [
+				{
+				  "viewId": "spaceship_armament_slot_edit",
+				  "readViewId": "spaceship_armament_slot",
+				  "id": "xqjbcogb",
+				  "name": "Repeater",
+				  "className": "Repeater"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_armament_slot_edit",
+	  "name": "Spaceship Armament (Editable)",
+	  "classes": "border border-warning rounded-lg highlight-1 pt-1 pb-2 pl-2 pr-2",
+	  "children": [
+		{
+		  "id": "sckspeyl",
+		  "name": "Row Weapon",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "size": 4,
+			  "id": "opbwkpor",
+			  "name": "Col Name",
+			  "classes": "p-0 ml-0 pr-1",
+			  "children": [
+				{
+				  "text": "Name",
+				  "id": "kxhdblgl",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary ml-1",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "armament_name",
+				  "name": "TextInput",
+				  "classes": "pl-2",
+				  "className": "TextInput"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "pnuetrfv",
+			  "name": "Col Bonus",
+			  "classes": "p-0 pr-1",
+			  "children": [
+				{
+				  "text": "Bonus",
+				  "align": "Center",
+				  "id": "visonwij",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "align": "Center",
+				  "id": "armament_bonus",
+				  "name": "NumberInput",
+				  "className": "NumberInput"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "fgsmwawa",
+			  "name": "Col Dmg",
+			  "classes": "p-0 pr-1",
+			  "children": [
+				{
+				  "text": "Damage",
+				  "align": "Center",
+				  "id": "rtymousa",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "align": "Center",
+				  "id": "armament_damage",
+				  "name": "NumberInput",
+				  "className": "NumberInput"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 2,
+			  "id": "kmeynuna",
+			  "name": "Col Range",
+			  "classes": "pl-0 pr-1",
+			  "children": [
+				{
+				  "text": "Range",
+				  "id": "xslxpkpf",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary ml-1",
+				  "className": "Label"
+				},
+				{
+				  "id": "armament_range",
+				  "name": "Choice",
+				  "classes": "highlight-2",
+				  "className": "Choice",
+				  "label": "name",
+				  "tableId": "spaceship-ranges"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "size": 1,
+			  "id": "naxtyzzu",
+			  "name": "Col Hardpoint",
+			  "classes": "p-0 pr-1",
+			  "children": [
+				{
+				  "text": "Hardpoint",
+				  "align": "Center",
+				  "id": "moatuqar",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "max": 3,
+				  "align": "Center",
+				  "id": "armament_hardpoint",
+				  "name": "NumberInput",
+				  "className": "NumberInput"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			},
+			{
+			  "id": "dldrqlxz",
+			  "name": "Col Type",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Type",
+				  "id": "gykpdbzl",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary ml-1",
+				  "className": "Label"
+				},
+				{
+				  "id": "armament_type",
+				  "name": "Choice",
+				  "classes": "highlight-2",
+				  "className": "Choice",
+				  "label": "name",
+				  "tableId": "spaceship-armaments-types"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			}
+		  ],
+		  "className": "Row"
+		},
+		{
+		  "id": "jyauiacs",
+		  "name": "Row Notes",
+		  "classes": "mx-0 pt-1",
+		  "children": [
+			{
+			  "id": "vbmjnnnu",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Notes",
+				  "id": "docdivek",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary ml-1",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "armament_notes",
+				  "name": "TextInput",
+				  "classes": "pl-2",
+				  "className": "TextInput"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "whakxhmu",
+		  "name": "Container",
+		  "classes": "pt-2 justify-content-end",
+		  "children": [
+			{
+			  "text": "Cost:",
+			  "id": "cudqhylv",
+			  "name": "Label",
+			  "classes": "text-tiny text-secondary ml-1",
+			  "className": "Label"
+			},
+			{
+			  "align": "Right",
+			  "id": "armament_cost",
+			  "name": "NumberInput",
+			  "classes": "w-100px ml-3 px-2",
+			  "className": "NumberInput"
+			}
+		  ],
+		  "className": "Container",
+		  "layout": "horizontal"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_armament_slot",
+	  "name": "Spaceship Armament (Display)",
+	  "classes": "highlight-1 py-1",
+	  "children": [
+		{
+		  "id": "lrykwoyk",
+		  "name": "Row Weapon",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "size": 4,
+			  "id": "yincrnyb",
+			  "name": "Col Name",
+			  "classes": "p-0 ml-0",
+			  "children": [
+				{
+				  "text": "#armament_name",
+				  "computed": true,
+				  "id": "lcwsqlwu",
+				  "name": "Label",
+				  "classes": "ml-2",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "hrochvyd",
+			  "name": "Col Bonus",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "if(#armament_bonus < 0, #armament_bonus, \"+\"+#armament_bonus)",
+				  "align": "Center",
+				  "computed": true,
+				  "id": "tepjjfeb",
+				  "name": "Label",
+				  "classes": "highlight-2 mx-2",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "xpfalnqj",
+			  "name": "Col Dmg",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "#armament_damage",
+				  "align": "Center",
+				  "computed": true,
+				  "id": "qddntlxg",
+				  "name": "Label",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 2,
+			  "id": "wgiyyktf",
+			  "name": "Col Range",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "#armament_range",
+				  "align": "Center",
+				  "computed": true,
+				  "id": "fclgkkyg",
+				  "name": "Label",
+				  "classes": "text-capitalize",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "size": 1,
+			  "id": "aimgcymh",
+			  "name": "Col Hardpoint",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "if(#armament_hardpoint = 1, \"Size I\", if(#armament_hardpoint = 2, \"Size II\", if(#armament_hardpoint = 3, \"Size III\", \"–\")))",
+				  "align": "Center",
+				  "computed": true,
+				  "id": "mdfjyjxr",
+				  "name": "Label",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "id": "robjhayd",
+			  "name": "Col Type",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "#armament_type",
+				  "align": "Right",
+				  "computed": true,
+				  "id": "gehdulwb",
+				  "name": "Label",
+				  "classes": "text-capitalize mr-3",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		},
+		{
+		  "id": "nomhswbz",
+		  "name": "Row Notes",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "size": 9,
+			  "id": "wlpbtqsd",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "if(#armament_notes, #armament_notes, \"\")",
+				  "computed": true,
+				  "id": "ihmoyrcp",
+				  "name": "Label",
+				  "classes": "text-secondary ml-2 font-italic",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "id": "gchlfvor",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "if(#armament_cost, \"$ \"+#armament_cost,\"\")",
+				  "align": "Right",
+				  "computed": true,
+				  "id": "tpyqzyza",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary mr-3",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_upgrades_view",
+	  "name": "Spaceship Upgrades",
+	  "children": [
+		{
+		  "id": "kiiwpcxq",
+		  "name": "Row Table Header",
+		  "classes": "mb-1 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "xbhebouj",
+			  "name": "Col",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Upgrade",
+				  "id": "xbpjouae",
+				  "name": "Label",
+				  "classes": "ml-2 text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "lnawqynq",
+		  "name": "Row Sep",
+		  "classes": "mb-2 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "znsxzmee",
+			  "name": "Column",
+			  "classes": "border border-info",
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "vwbitiot",
+		  "name": "Row Repeater",
+		  "children": [
+			{
+			  "id": "edmrbnow",
+			  "name": "Column",
+			  "children": [
+				{
+				  "viewId": "spaceship_upgrade_slot_edit",
+				  "readViewId": "spaceship_upgrade_slot",
+				  "id": "vnxzantb",
+				  "name": "Repeater",
+				  "className": "Repeater"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_upgrade_slot_edit",
+	  "name": "Spaceship Upgrade (Editable)",
+	  "classes": "border border-warning rounded-lg highlight-1 pt-1 pb-2 pl-2 pr-2",
+	  "children": [
+		{
+		  "id": "hyqlezzw",
+		  "name": "Row",
+		  "classes": "m-0",
+		  "children": [
+			{
+			  "id": "plynicun",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Name",
+				  "id": "jvksddoh",
+				  "name": "Label",
+				  "classes": "ml-1 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "upgrade_name",
+				  "name": "TextInput",
+				  "classes": "px-2",
+				  "className": "TextInput"
+				},
+				{
+				  "text": "Effect",
+				  "id": "ksrbnbfe",
+				  "name": "Label",
+				  "classes": "ml-1 mt-2 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "upgrade_effect",
+				  "name": "Textarea",
+				  "classes": "px-2 h-100px",
+				  "className": "Textarea"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			}
+		  ],
+		  "className": "Row"
+		},
+		{
+		  "id": "gqtcwvrq",
+		  "name": "Container",
+		  "classes": "mt-2 justify-content-end",
+		  "children": [
+			{
+			  "text": "Cost:",
+			  "id": "qtqgitui",
+			  "name": "Label",
+			  "classes": "text-tiny text-secondary",
+			  "className": "Label"
+			},
+			{
+			  "align": "Right",
+			  "id": "upgrade_cost",
+			  "name": "NumberInput",
+			  "classes": "ml-3 w-100px px-2",
+			  "className": "NumberInput"
+			}
+		  ],
+		  "className": "Container",
+		  "layout": "horizontal"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_upgrade_slot",
+	  "name": "Spaceship Upgrade (Display)",
+	  "classes": "highlight-1 py-2",
+	  "children": [
+		{
+		  "id": "rejkcuvk",
+		  "name": "Row",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "size": 10,
+			  "id": "zuocptsx",
+			  "name": "Col",
+			  "classes": "pl-2 pr-0",
+			  "children": [
+				{
+				  "text": "#upgrade_name",
+				  "computed": true,
+				  "id": "plmsdvwx",
+				  "name": "Label",
+				  "classes": "text-medium text-bold",
+				  "className": "Label"
+				},
+				{
+				  "text": "if(#upgrade_effect, #upgrade_effect, \"\")",
+				  "computed": true,
+				  "id": "exovrype",
+				  "name": "Label",
+				  "classes": "ml-1 text-secondary",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "id": "ciljsglm",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "if(#upgrade_cost, \"$ \"+#upgrade_cost, \"\")",
+				  "align": "Right",
+				  "computed": true,
+				  "id": "tozahldk",
+				  "name": "Label",
+				  "classes": "text-tiny text-secondary mr-3",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_damage_view",
+	  "name": "Spaceship Damage",
+	  "children": [
+		{
+		  "id": "qrxdwkes",
+		  "name": "Row",
+		  "children": [
+			{
+			  "id": "gvxhzuru",
+			  "name": "Col Minor",
+			  "children": [
+				{
+				  "id": "dhhciwqy",
+				  "name": "Row Table Header",
+				  "classes": "mb-1 ml-0 mr-3",
+				  "children": [
+					{
+					  "id": "qqxcvjys",
+					  "name": "Col",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "text": "Minor Component Damage",
+						  "id": "besxdfua",
+						  "name": "Label",
+						  "classes": "ml-2 text-info",
+						  "className": "Label"
+						}
+					  ],
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "pzuklkms",
+				  "name": "Row Sep",
+				  "classes": "mb-2 ml-0 mr-3",
+				  "children": [
+					{
+					  "id": "ifpjexem",
+					  "name": "Column",
+					  "classes": "border border-info",
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "dmkislxy",
+				  "name": "Row Repeater",
+				  "children": [
+					{
+					  "id": "dpqrbgrt",
+					  "name": "Column",
+					  "children": [
+						{
+						  "viewId": "spaceship_item_edit",
+						  "readViewId": "spaceship_item",
+						  "id": "rfoqybuv",
+						  "name": "Repeater",
+						  "className": "Repeater"
+						}
+					  ],
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row"
+				}
+			  ],
+			  "className": "Column"
+			},
+			{
+			  "id": "epvicepl",
+			  "name": "Col Major",
+			  "children": [
+				{
+				  "id": "ydzgzjyl",
+				  "name": "Row Table Header",
+				  "classes": "mb-1 ml-0 mr-3",
+				  "children": [
+					{
+					  "id": "kzjtnysp",
+					  "name": "Col",
+					  "classes": "p-0",
+					  "children": [
+						{
+						  "text": "Major Component Damage",
+						  "id": "wmgraxag",
+						  "name": "Label",
+						  "classes": "ml-2 text-info",
+						  "className": "Label"
+						}
+					  ],
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "nwyojbel",
+				  "name": "Row Sep",
+				  "classes": "mb-2 ml-0 mr-3",
+				  "children": [
+					{
+					  "id": "ouhazfgd",
+					  "name": "Column",
+					  "classes": "border border-info",
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row",
+				  "collapsed": true
+				},
+				{
+				  "id": "niuurtsa",
+				  "name": "Row Repeater",
+				  "children": [
+					{
+					  "id": "affbhubl",
+					  "name": "Column",
+					  "children": [
+						{
+						  "viewId": "spaceship_item_edit",
+						  "readViewId": "spaceship_item",
+						  "id": "rekxdcye",
+						  "name": "Repeater",
+						  "className": "Repeater"
+						}
+					  ],
+					  "className": "Column"
+					}
+				  ],
+				  "className": "Row"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_item_edit",
+	  "name": "Spaceship Item (Editable)",
+	  "classes": "border border-warning rounded-lg highlight-1 pt-1 pb-2 pl-2 pr-2",
+	  "children": [
+		{
+		  "id": "prkremyh",
+		  "name": "Row",
+		  "classes": "m-0",
+		  "children": [
+			{
+			  "id": "nplcnumm",
+			  "name": "Column",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Name",
+				  "id": "rldoysvf",
+				  "name": "Label",
+				  "classes": "ml-1 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "spaceship_item_name",
+				  "name": "TextInput",
+				  "classes": "px-2",
+				  "className": "TextInput"
+				},
+				{
+				  "text": "Description",
+				  "id": "yapimhxx",
+				  "name": "Label",
+				  "classes": "ml-1 mt-2 text-tiny text-secondary",
+				  "className": "Label"
+				},
+				{
+				  "placeholder": "...",
+				  "id": "spaceship_item_text",
+				  "name": "Textarea",
+				  "classes": "px-2 h-100px",
+				  "className": "Textarea"
+				}
+			  ],
+			  "className": "Column",
+			  "collapsed": true
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_item",
+	  "name": "Spaceship Item (Display)",
+	  "classes": "highlight-1 py-2",
+	  "children": [
+		{
+		  "id": "mjypbwbl",
+		  "name": "Row",
+		  "classes": "mx-0",
+		  "children": [
+			{
+			  "id": "rjzhvcmn",
+			  "name": "Col",
+			  "classes": "pl-2 pr-0",
+			  "children": [
+				{
+				  "text": "#spaceship_item_name",
+				  "computed": true,
+				  "id": "aspbhhxf",
+				  "name": "Label",
+				  "classes": "text-medium text-bold",
+				  "className": "Label"
+				},
+				{
+				  "text": "if(#spaceship_item_text, #spaceship_item_text, \"\")",
+				  "computed": true,
+				  "id": "xrumtugo",
+				  "name": "Label",
+				  "classes": "ml-1 text-secondary",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
+		}
+	  ],
+	  "className": "View"
+	},
+	{
+	  "type": "SubComponent",
+	  "width": 650,
+	  "height": 400,
+	  "id": "spaceship_log_view",
+	  "name": "Spaceship Log",
+	  "children": [
+		{
+		  "id": "fqfkgvrp",
+		  "name": "Row Table Header",
+		  "classes": "mb-1 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "krpmihta",
+			  "name": "Col",
+			  "classes": "p-0",
+			  "children": [
+				{
+				  "text": "Log",
+				  "id": "aohzjnti",
+				  "name": "Label",
+				  "classes": "ml-2 text-info",
+				  "className": "Label"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "pinhjwys",
+		  "name": "Row Sep",
+		  "classes": "mb-2 ml-0 mr-3",
+		  "children": [
+			{
+			  "id": "hrdrasup",
+			  "name": "Column",
+			  "classes": "border border-info",
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row",
+		  "collapsed": true
+		},
+		{
+		  "id": "nqrkmzrs",
+		  "name": "Row Repeater",
+		  "children": [
+			{
+			  "id": "dpnrnzfy",
+			  "name": "Column",
+			  "children": [
+				{
+				  "viewId": "spaceship_item_edit",
+				  "readViewId": "spaceship_item",
+				  "id": "fdlfemgt",
+				  "name": "Repeater",
+				  "className": "Repeater"
+				}
+			  ],
+			  "className": "Column"
+			}
+		  ],
+		  "className": "Row"
 		}
 	  ],
 	  "className": "View"

@@ -1,4 +1,43 @@
 Source,Translation
+Size III,Taille III
+Size II,Taille II
+Size I,Taille I
+defensive,défensif
+offensive,offensif
+Log,Log
+Major Component Damage,Dégât majeur de composant
+Minor Component Damage,Dégât mineur de composant
+Upgrade,Amélioration
+Cost:,Coût :
+Defensive,Défensif
+Offensive,Offensif
+Hardpoint,Encrâge
+Surface,
+surface,
+contact,
+Contact,
+Module Effect,Effet du module
+Module Capacity/Type,Capacité / Type du module
+Price,Prix
+Size,Taille
+Module Name,Nom du module
+Internal Module,Module interne
+LOG,LOG
+UPGRADES,AMELIORATIONS
+ARMAMENTS,ARMEMENTS
+INFOS,INFOS
+Lease Cost:,Coût d'entretien
+DAMAGE,DÉGÂTS
+Hull,Coque
+Thrusters,Propulseurs
+Signature,
+FTL Rating,Score PVL
+Length,Longueur
+Passengers,Passagers
+Crew,Equipage
+AI,I.A.
+MANUFACTURER,FABRIQUANT
+NAME,NOM
 Title,Titre
 TITLE,TITRE
 Description,Description

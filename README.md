@@ -4,7 +4,7 @@ This is a collection of scripts for the System Builder of the [Let's-Role](https
 
 ## Systems Included
 
-- Alien RPG v0.91
+- Alien RPG v0.92
 
 ## Contributing
 
