@@ -33,7 +33,7 @@
 				  "references": []
 				},
 				{
-				  "id": "player_color",
+				  "id": "color",
 				  "name": "Color",
 				  "classes": "",
 				  "children": [],
@@ -2952,7 +2952,7 @@
 				  "className": "Avatar"
 				},
 				{
-				  "id": "monstercolor",
+				  "id": "color",
 				  "name": "Color",
 				  "className": "Color"
 				},
@@ -4271,37 +4271,42 @@
 				{
 				  "id": "spaceshipavatar",
 				  "name": "Avatar",
+				  "classes": "mb-2",
 				  "className": "Avatar"
+				},
+				{
+				  "id": "color",
+				  "name": "Color",
+				  "className": "Color"
+				},
+				{
+				  "id": "mbgfnbnz",
+				  "name": "Container",
+				  "classes": "justify-content-end mt-3",
+				  "children": [
+					{
+					  "text": "Lease Cost:",
+					  "id": "gofuajjy",
+					  "name": "Label",
+					  "classes": "text-tiny",
+					  "className": "Label"
+					},
+					{
+					  "align": "Right",
+					  "id": "usfnaybv",
+					  "name": "NumberInput",
+					  "classes": "w-100px ml-3 px-2",
+					  "className": "NumberInput"
+					}
+				  ],
+				  "className": "Container",
+				  "layout": "horizontal"
 				}
 			  ],
-			  "className": "Column",
-			  "collapsed": true
+			  "className": "Column"
 			}
 		  ],
 		  "className": "Row"
-		},
-		{
-		  "id": "mbgfnbnz",
-		  "name": "Container",
-		  "classes": "justify-content-end",
-		  "children": [
-			{
-			  "text": "Lease Cost:",
-			  "id": "gofuajjy",
-			  "name": "Label",
-			  "classes": "text-tiny",
-			  "className": "Label"
-			},
-			{
-			  "align": "Right",
-			  "id": "usfnaybv",
-			  "name": "NumberInput",
-			  "classes": "w-100px ml-3 px-2",
-			  "className": "NumberInput"
-			}
-		  ],
-		  "className": "Container",
-		  "layout": "horizontal"
 		}
 	  ],
 	  "className": "View"
